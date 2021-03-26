@@ -4,6 +4,7 @@
  * 1. Does not check for non-numeric values when
  *    prompted to select a space on the board.
  * 2. "Invalid Option" does not display due to system("clear")
+ * 3. Players cannot be a computer.
  */
 
 
