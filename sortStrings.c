@@ -40,16 +40,16 @@ int main(void)
     return 0;
 }
 
+// Sorts strings
 void sort(int numOfStrings, char arr[][SIZE])
 {
     char temp[SIZE];
-    int stringsLeft = numOfStrings, result = 0;
+    int stringsLeft = numOfStrings;
 
     while (stringsLeft > 1)
     {
         for (int i = 0; i < stringsLeft - 1; i++) {
-            result = strcmp(arr[i], arr[i+1]);
-            if (result > 0) {
+            if (strcmp(arr[i], arr[i+1]) > 0) {
                 strcpy(temp, arr[i]);
                 strcpy(arr[i], arr[i+1]);
                 strcpy(arr[i+1], temp);
