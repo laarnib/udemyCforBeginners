@@ -23,7 +23,7 @@ int main(void)
     return 0;
 }
 
-void square(int * const number)
+void square(int * number)
 {
     *number *= *number;
 }
