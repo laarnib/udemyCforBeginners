@@ -15,49 +15,63 @@
 
 #define NAME_SIZE 100
 
-struct Employee {
+typedef struct Employee {
     char name[NAME_SIZE];
     int month;
     int day;
     int year;
     float salary;
-};
+} EMPLOYEE;
+
+void get_employee_data(EMPLOYEE * employeePtr);
+void print_data(EMPLOYEE const * employeePtr);
 
 int main(void)
 {
-    int numberOfEmployees = 0, i = 0;
+    int employee_size = 0, i = 0;
 
     printf("How many employee data do you want to enter? ");
-    scanf(" %i", &numberOfEmployees);
+    scanf(" %i", &employee_size);
     
-    struct Employee employees[numberOfEmployees];
+    EMPLOYEE employees[employee_size], * employeePtr = NULL;
     
-    while (i < numberOfEmployees)
+    employeePtr = employees;
+    
+    while (i < employee_size)
     {
         system("clear");
-        printf("Enter data for Employee #%i\n", i+1);
-        printf("Name: ");
-        scanf(" ");
-        fgets(employees[i].name, NAME_SIZE, stdin);
-
-        printf("Hire Date: ");
-        scanf("%i/%i/%i", &employees[i].month, &employees[i].day, &employees[i].year);
-        
-        printf("Salary: ");
-        scanf(" %f", &employees[i].salary);
-
+        printf("Enter data for Employee #%i\n", i + 1);
+        get_employee_data(employeePtr + i);
         ++i;
     }
 
     // Print employee information
     system("clear");
     printf("\n\nPrinting Employee Data....\n\n");
-    for (int i = 0; i < numberOfEmployees; i++)
+    for (i = 0; i < employee_size; i++)
     {
-        printf("Name: %s", employees[i].name);
-        printf("Hire Date: %i/%i/%i\n", employees[i].month, employees[i].day, employees[i].year);
-        printf("Salary: %.2f\n\n", employees[i].salary);
+        print_data(employeePtr + i);
     }
 
     return 0;
+}
+
+void get_employee_data(EMPLOYEE * employeePtr)
+{
+    printf("Name: ");
+    scanf(" ");
+    fgets(employeePtr->name, NAME_SIZE, stdin);
+
+    printf("Hire Date: ");
+    scanf("%i/%i/%i", &employeePtr->month, &employeePtr->day, &employeePtr->year);
+    
+    printf("Salary: ");
+    scanf(" %f", &employeePtr->salary);
+}
+
+void print_data(EMPLOYEE const * employeePtr)
+{   
+    printf("Name: %s", employeePtr->name);
+    printf("Hire Date: %i/%i/%i\n", employeePtr->month, employeePtr->day, employeePtr->year);
+    printf("Salary: %.2f\n\n", employeePtr->salary);
 }
