@@ -26,4 +26,5 @@ int main(void)
 void square(int * number)
 {
     *number *= *number;
+    return;
 }
