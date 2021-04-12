@@ -12,6 +12,7 @@ int main(void)
     char c;
     int i = 0;
     
+    // Open the file
     fp = fopen("printInReverse.c", "r");
 
     if(fp == NULL)
@@ -20,13 +21,17 @@ int main(void)
         return 1;
     }
 
+    // Get the length of the file
     fseek(fp, 0, SEEK_END);
     length = ftell(fp);
     
+    // Subtracted one from length so null terminator will be included
     length -= 1;
     while (length >= 0)
     {
         fseek(fp, length, SEEK_SET);
+
+        // Print to screen
         printf("%c", fgetc(fp));
         length--;
     }
